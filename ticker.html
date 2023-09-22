@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City Ticker</title>
+    <style>
+
+        @font-face {
+            font-family: 'Gilroy'; /* The desired font family name */
+            src: url('Gilroy-Regular.ttf') format('truetype'); /* Path to the font file */
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #F2f2f2;
+        }
+
+        .ticker-wrap {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            margin: auto; /* Center horizontally */
+            width: 80%;
+            overflow: hidden;
+            height: 4rem;
+            box-sizing: content-box;
+        }
+
+        .ticker {
+            white-space: nowrap;
+            height: 4rem;
+            line-height: 4rem;
+            display: inline-block;
+            box-sizing: content-box;
+        }
+
+        .ticker__item {
+            display: inline-block;
+            padding: 8px 24px; /* 8px top and bottom, 24px left and right */
+            font-size: 2rem;
+            color: #191919;
+            background-color: white;
+            border-radius: 50px;
+            font-family: 'Gilroy', sans-serif;
+            font-size: 16px;
+            margin-right: 16px; /* Space between ticker items */
+            line-height: 1;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="ticker-wrap">
+        <div class="ticker" id="ticker">
+            <!-- JavaScript will populate this section with city names -->
+        </div>
+    </div>
+
+    <script>
+        // Array of city names in the desired order
+        const cities = [
+            "Philadelphia",
+            "New York",
+            "Los Angeles",
+            "Chicago",
+            "Houston",
+            "San Francisco",
+            "Miami",
+            "Boston",
+            "Seattle",
+            "Denver",
+            "Austin",
+            "Atlanta",
+            "Dallas",
+            "Phoenix"
+        ];
+
+        // Function to populate the ticker with city names and create a seamless loop
+        function populateTicker() {
+            const ticker = document.getElementById("ticker");
+
+            // Create a seamless loop of city names
+            let cityText = '';
+            for (let i = 0; i < cities.length; i++) {
+                cityText += `<div class="ticker__item">${cities[i]}</div>`;
+            }
+
+            ticker.innerHTML = cityText + cityText; // Duplicate city names
+        }
+
+        // Populate the ticker initially and then update it every few seconds
+        populateTicker();
+        const ticker = document.querySelector(".ticker");
+        let scrollValue = 0;
+
+        function scrollTicker() {
+            scrollValue -= 1;
+            ticker.style.transform = `translateX(${scrollValue}px)`;
+
+            if (scrollValue === -ticker.clientWidth / 2) {
+                scrollValue = 0;
+            }
+        }
+
+        setInterval(scrollTicker, 10); // Adjust the scrolling speed as needed
+    </script>
+</body>
+</html>
