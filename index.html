@@ -7,8 +7,8 @@
     <style>
 
         @font-face {
-            font-family: 'Gilroy';
-            src: url('Gilroy-Regular.ttf') format('truetype');
+            font-family: 'Gilroy'; 
+            src: url('Gilroy-Regular.ttf') format('truetype'); 
             font-weight: normal;
             font-style: normal;
         }
@@ -24,7 +24,7 @@
             top: 0;
             left: 0;
             right: 0;
-            margin: auto;
+            margin: auto; 
             width: 80%;
             overflow: hidden;
             height: 4rem;
@@ -41,14 +41,14 @@
 
         .ticker__item {
             display: inline-block;
-            padding: 8px 24px;
+            padding: 8px 24px; 
             font-size: 2rem;
             color: #191919;
             background-color: white;
             border-radius: 50px;
             font-family: 'Gilroy', sans-serif;
             font-size: 16px;
-            margin-right: 16px;
+            margin-right: 16px; 
             line-height: 1;
         }
 
@@ -57,7 +57,7 @@
 <body>
     <div class="ticker-wrap">
         <div class="ticker" id="ticker">
-            
+  
         </div>
     </div>
 
@@ -97,17 +97,16 @@
         populateTicker();
         const ticker = document.querySelector(".ticker");
         let scrollValue = 0;
-
         function scrollTicker() {
             scrollValue -= 1;
             ticker.style.transform = `translateX(${scrollValue}px)`;
 
-            if (scrollValue === -ticker.clientWidth / 2) {
+            if (scrollValue <= -ticker.clientWidth / 2) {
                 scrollValue = 0;
             }
         }
 
-        setInterval(scrollTicker, 10); // Adjust the scrolling speed as needed
+        setInterval(scrollTicker, 10); 
     </script>
 </body>
 </html>
