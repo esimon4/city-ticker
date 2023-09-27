@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>City Ticker</title>
     <style>
-
         @font-face {
             font-family: 'Gilroy'; 
             src: url('Gilroy-Regular.ttf') format('truetype'); 
@@ -20,16 +19,42 @@
         }
 
         .ticker-wrap {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            margin: auto; 
+            position: relative;
             width: 80%;
             overflow: hidden;
             height: 4rem;
             box-sizing: content-box;
+            margin: auto;
+            bborder: 1px black solid;
+            max-width: 1440px;
         }
+
+        .ticker-gradient1 {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            background: linear-gradient(to right, rgba(242, 242, 242, 1), rgba(242, 242, 242, 0)); /* Left gradient */
+            pointer-events: none;
+            z-index: 10;
+            bborder: 1px blue solid;
+        }
+
+        .ticker-gradient2 {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            width: 40px;
+            background: linear-gradient(to left, rgba(242, 242, 242, 1), rgba(242, 242, 242, 0)); /* Right gradient */
+            pointer-events: none;
+            z-index: 10;
+            bborder: 1px red solid;
+        }
+
+
 
         .ticker {
             white-space: nowrap;
@@ -37,6 +62,7 @@
             line-height: 4rem;
             display: inline-block;
             box-sizing: content-box;
+            position: relative; 
         }
 
         .ticker__item {
@@ -51,13 +77,14 @@
             margin-right: 16px; 
             line-height: 1;
         }
-
     </style>
 </head>
 <body>
     <div class="ticker-wrap">
+        <div class="ticker-gradient1"></div>
+        <div class="ticker-gradient2"></div>
         <div class="ticker" id="ticker">
-  
+            
         </div>
     </div>
 
@@ -65,35 +92,38 @@
         
         const cities = [
             "Philadelphia",
-            "New York",
+            "Boston",
             "Los Angeles",
             "Chicago",
-            "Houston",
-            "San Francisco",
-            "Miami",
-            "Boston",
+            "Des Moines",
+            "Rockport",
             "Seattle",
-            "Denver",
-            "Austin",
-            "Atlanta",
-            "Dallas",
-            "Phoenix"
+            "Portland",
+            "Oakland",
+            "Charleston",
+            "Baltimore",
+            "Asbury Park",
+            "Madison", 
+            "Richmond",
+            "Providence",
+            "San Diego",
+            "Toronto"
         ];
 
-        // Function to populate the ticker with city names and create a seamless loop
+        
         function populateTicker() {
             const ticker = document.getElementById("ticker");
 
-            // Create a seamless loop of city names
+            
             let cityText = '';
             for (let i = 0; i < cities.length; i++) {
                 cityText += `<div class="ticker__item">${cities[i]}</div>`;
             }
 
-            ticker.innerHTML = cityText + cityText; // Duplicate city names
+            ticker.innerHTML = cityText + cityText; 
         }
 
-        // Populate the ticker initially and then update it every few seconds
+        
         populateTicker();
         const ticker = document.querySelector(".ticker");
         let scrollValue = 0;
